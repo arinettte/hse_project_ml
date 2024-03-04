@@ -59,8 +59,7 @@ class ImageClassificationBase(nn.Module):
         return {'val_loss': loss.detach(), 'val_acc': acc}
 
     def pred_step(self, batch):
-        images = batch
-        out = self(images)
+        out = self(batch)
         return out
 
     def validation_epoch_end(self, outputs):
