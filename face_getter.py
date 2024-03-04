@@ -2,20 +2,21 @@ import cv2
 import time
 import os
 
-face_cascade_path = 'haarcascade_frontalface_default.xml'
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + face_cascade_path)
 
-if not os.path.exists('photos'):
-    os.makedirs('photos')
 
-cap = cv2.VideoCapture(0)
+def make_photo():
+    face_cascade_path = 'haarcascade_frontalface_default.xml'
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + face_cascade_path)
 
-try:
-    while True:
+    if not os.path.exists('photos'):
+        os.makedirs('photos')
+    cap = cv2.VideoCapture(0)
+    try:
+
         ret, frame = cap.read()
         if not ret:
             print("Не удалось получить изображение с камеры.")
-            break
+            return
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -28,8 +29,8 @@ try:
             cv2.imwrite(f'photos/face_{timestamp}.png', face)
             print(f"Фото сохранено: photos/face_{timestamp}.png")
 
-        time.sleep(10)
 
-finally:
-    cap.release()
-    cv2.destroyAllWindows()
+
+    finally:
+        cap.release()
+        cv2.destroyAllWindows()
