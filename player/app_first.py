@@ -20,6 +20,12 @@ from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QEasingCurve, QUrl, QDi
 from PyQt5.QtGui import QPixmap, QPalette, QColor, QPainter, QBitmap
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 
+def emotion_to_number(word):
+    if word in ['angry', 'disgust', 'fear','sad']:
+        return 1
+    if word == 'neutral':
+        return 3
+    return 2
 
 def choose_playlist(number_):  # for connection with other members
 
