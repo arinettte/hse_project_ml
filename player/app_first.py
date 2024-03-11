@@ -1,15 +1,4 @@
 import sys, os
-import os
-import torch
-import torchvision
-import torch.nn as nn
-import numpy as np
-import torch.nn.functional as F
-from torchvision.datasets import ImageFolder
-from torch.utils.data import DataLoader
-import torchvision.transforms as tt
-from torchvision.utils import make_grid
-import matplotlib.pyplot as plt
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl
@@ -20,12 +9,15 @@ from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QEasingCurve, QUrl, QDi
 from PyQt5.QtGui import QPixmap, QPalette, QColor, QPainter, QBitmap
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
 
-def emotion_to_number(word):
-    if word in ['angry', 'disgust', 'fear','sad']:
+
+def emotion_to_number(emotion):
+    if emotion.lower() in ['angry', 'disgust', 'fear', 'sad']:
         return 1
-    if word == 'neutral':
+    elif emotion.lower() == 'neutral':
+        return 2
+    else:
         return 3
-    return 2
+
 
 def choose_playlist(number_):  # for connection with other members
 
@@ -111,10 +103,13 @@ class MainWindow(QWidget):
             "sedaja.mp3": "happy.jpg",
             "voila.mp3": "sad.jpg"
         }
-        self.current_index = 0
 
         self.setGeometry(300, 300, 600, 400)
         self.setWindowTitle('LYE')
+
+        self.current_index = 0  # for songs
+        self.current_playlist = 3  # neutral - basic
+        self.playlist_index = {}
 
         # color theme
         color_hex = "#DCDCDC"
@@ -210,46 +205,45 @@ class MainWindow(QWidget):
 
         # connect emotional
         self.emotion_panel.btn_sad.clicked.connect(self.sad_playlist)
-        self.emotion_panel.btn_neutral.clicked.connect(self.neutral_playlist)
-        self.emotion_panel.btn_happy.clicked.connect(self.happy_playlist)
+        self.emotion_panel.btn_neutral.clicked.connect(self.happy_playlist)
+        self.emotion_panel.btn_happy.clicked.connect(self.neutral_playlist)
 
         self.player = QMediaPlayer()
         self.player.mediaStatusChanged.connect(self.on_media_status_changed)
 
-    def sad_playlist(self):
-        self.tracks = {
-            "voila.mp3": "sad.jpg",
-            "sad_snow.mp3": "sad.jpg",
-            "sad_pretend.mp3": "sad.jpg"
-        }
-        self.current_index = 0
+    def set_playlist(self, playlist):  # for connection words and numbers
+        if playlist == 1:
+            choose_playlist(1)
+            self.current_playlist = 1
+            self.tracks = choose_em_playlist
+        elif playlist == 2:
+            choose_playlist(2)
+            self.current_playlist = 2
+            self.tracks = choose_em_playlist
+        elif playlist == 3:
+            choose_playlist(3)
+            self.current_playlist = 3
+            self.tracks = choose_em_playlist
+        self.current_index = self.playlist_index.get(self.current_playlist,
+                                                     0)  # index of the current track in this playlist
         self.open_file()
+
+    def sad_playlist(self):
+        self.set_playlist(1)
 
     def neutral_playlist(self):
-        self.tracks = {
-            "aach.mp3": "neu.jpg",
-            "neu_sen.mp3": "neu.jpg",
-            "neu_shopen.mp3": "neu.jpg"
-        }
-        self.current_index = 0
-        self.open_file()
+        self.set_playlist(2)
 
     def happy_playlist(self):
-        self.tracks = {
-            "happy_love.mp3": "happy.jpg",
-            "sedaja.mp3": "happy.jpg",
-            "happy_ball.mp3": "happy.jpg"
-        }
-        self.current_index = 0
-        self.open_file()
+        self.set_playlist(3)
 
     def change_volume(self, value):
         self.player.setVolume(value)
 
     def initTracks(self):
-        global choose_em_playlist  # connection
+        choose_playlist(self.current_playlist)
+        self.playlist_index = {1: 0, 2: 0, 3: 0}
         self.tracks = choose_em_playlist
-        self.current_index = 0
 
     def volume_pl(self):
         curr = self.player.volume()
@@ -274,6 +268,7 @@ class MainWindow(QWidget):
 
     def next_m(self):
         self.current_index = (1 + self.current_index) % len(self.tracks)
+        self.playlist_index[self.current_playlist] = self.current_index
         self.open_file()
 
     def on_media_status_changed(self, state):  # auto transition to next track
@@ -282,6 +277,7 @@ class MainWindow(QWidget):
 
     def prev_m(self):
         self.current_index = (self.current_index - 1) % len(self.tracks)
+        self.playlist_index[self.current_playlist] = self.current_index
         self.open_file()
 
     def update_image(self):
@@ -319,14 +315,10 @@ class MainWindow(QWidget):
 
 if __name__ == '__main__':
 
-    choose_em_playlist = {}
-    choose_playlist(2)
-
     app = QApplication(sys.argv)
     ex = MainWindow()
     splash = ex.show_splash()
     ex.show()
-
     try:
         sys.exit(app.exec())
     except SystemExit:
