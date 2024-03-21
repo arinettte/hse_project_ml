@@ -8,8 +8,31 @@ from PyQt5.QtWidgets import (QWidget, QPushButton, QApplication, QSlider, QStyle
 from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QEasingCurve, QUrl, QDir
 from PyQt5.QtGui import QPixmap, QPalette, QColor, QPainter, QBitmap
 from PyQt5.QtMultimedia import QMediaContent, QMediaPlayer
-
-
+#from model_data import *
+def model_init():
+    global result_dir
+    global BATCH_SIZE
+    global result_tfms
+    global model
+    global classes
+    global device
+    result_dir = './photos'
+    BATCH_SIZE = 200
+    classes = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']
+    result_tfms = tt.Compose([tt.Grayscale(num_output_channels=1), tt.ToTensor()])
+    device = get_default_device()
+    model = ResNet(1, len(classes))
+    model.load_state_dict(torch.load('./models/emotion_detection_acc0.5452366471290588.pth'))
+    model = to_device(model,device)
+def final_predict():
+    global result_tfms
+    global classes
+    global device
+    global model
+    data = [result_tfms(PIL.Image.open('./photos/'+os.listdir(result_dir)[-1]).resize((48, 48)))]
+    data_dl = DataLoader(data, 200, num_workers=3, pin_memory=True)
+    data_dl = DeviceDataLoader(data_dl, device)
+    return classes[predict(model,data_dl)[0][0]]
 def emotion_to_number(emotion):
     if emotion.lower() in ['angry', 'disgust', 'fear', 'sad']:
         return 1
@@ -18,28 +41,28 @@ def emotion_to_number(emotion):
     else:
         return 3
 
-
+PLAYER_PATH = "./player/"
 def choose_playlist(number_):  # for connection with other members
 
     global choose_em_playlist
 
     if number_ == 1:
         choose_em_playlist = {
-            "voila.mp3": "sad.jpg",
-            "sad_snow.mp3": "sad.jpg",
-            "sad_pretend.mp3": "sad.jpg"
+            PLAYER_PATH + "voila.mp3": PLAYER_PATH +"sad.jpg",
+            PLAYER_PATH +"sad_snow.mp3": PLAYER_PATH +"sad.jpg",
+            PLAYER_PATH +"sad_pretend.mp3": PLAYER_PATH +"sad.jpg"
         }
     elif number_ == 2:
         choose_em_playlist = {
-            "happy_love.mp3": "happy.jpg",
-            "sedaja.mp3": "happy.jpg",
-            "happy_ball.mp3": "happy.jpg"
+            PLAYER_PATH +"happy_love.mp3": PLAYER_PATH +"happy.jpg",
+            PLAYER_PATH +"sedaja.mp3": PLAYER_PATH +"happy.jpg",
+            PLAYER_PATH + "happy_ball.mp3": PLAYER_PATH +"happy.jpg"
         }
     elif number_ == 3:
         choose_em_playlist = {
-            "aach.mp3": "neu.jpg",
-            "neu_sen.mp3": "neu.jpg",
-            "neu_shopen.mp3": "neu.jpg"
+            PLAYER_PATH +  "aach.mp3":PLAYER_PATH + "neu.jpg",
+            PLAYER_PATH + "neu_sen.mp3": PLAYER_PATH +"neu.jpg",
+            PLAYER_PATH + "neu_shopen.mp3": PLAYER_PATH +"neu.jpg"
         }
 
 
@@ -99,9 +122,9 @@ class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.tracks = {
-            "aach.mp3": "neu.jpg",
-            "sedaja.mp3": "happy.jpg",
-            "voila.mp3": "sad.jpg"
+            PLAYER_PATH +"aach.mp3": PLAYER_PATH +"neu.jpg",
+            PLAYER_PATH +"sedaja.mp3": PLAYER_PATH +"happy.jpg",
+            PLAYER_PATH + "voila.mp3": PLAYER_PATH +"sad.jpg"
         }
 
         self.setGeometry(300, 300, 600, 400)
@@ -290,7 +313,7 @@ class MainWindow(QWidget):
         self.image_label.adjustSize()
 
     def show_splash(self):
-        pixmap = QPixmap("LYEE.jpg")
+        pixmap = QPixmap(PLAYER_PATH +"LYEE.jpg")
         pixmap = pixmap.scaled(600, 400)
 
         splash = QSplashScreen(pixmap)
