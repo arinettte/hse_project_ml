@@ -31,7 +31,8 @@ def fetch_playlist_tracks_audio_features():
             while playlist_tracks_results:
                 track_ids = [item['track']['id'] for item in playlist_tracks_results['items'] if item['track'] and item['track']['id']]
                 if track_ids:
-                    # Разбиваем список ID треков на пакеты по 100 штук и запрашиваем аудио характеристики для каждого пакета, чтобы уменьшить количество запросов
+                    # Разбиваем список ID треков на пакеты по 100 штук и запрашиваем аудио характеристики для каждого пакета,
+                    # чтобы уменьшить количество запросов
                     for i in range(0, len(track_ids), 100):
                         batch = track_ids[i:i+100]
                         audio_features_list = sp.audio_features(batch)
@@ -44,12 +45,14 @@ def fetch_playlist_tracks_audio_features():
                                     'valence': audio_features['valence']
                                 }
                                 tracks_info.append(track_info)
-
+                        time.sleep(3)
+                # break  # ограничение для ускорения времени работы при проверке
                 if playlist_tracks_results['next']:
                     playlist_tracks_results = sp.next(playlist_tracks_results)
                 else:
                     playlist_tracks_results = None
-                time.sleep(60)
+            # break  # ограничение для ускорения времени работы при проверке
+        # break  # ограничение для ускорения времени работы при проверке
         if results['next']:
             results = sp.next(results)
         else:
@@ -77,7 +80,7 @@ def classify_music_from_spotify():
     new_data.to_csv('classified_spotify_playlist.csv', index=False)
 
 
-def add_tracks_to_playlists_from_csv(csv_file):
+def add_tracks_to_playlists_from_csv():
     env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
     load_dotenv(dotenv_path=env_path)
     SPOTIPY_CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID')
@@ -95,28 +98,36 @@ def add_tracks_to_playlists_from_csv(csv_file):
         'Calm': os.getenv('CALM_PLAYLIST_ID')
     }
 
-    df = pd.read_csv(csv_file)
+    df = pd.read_csv('classified_spotify_playlist.csv')
+
+    tracks_to_add = {}
     for index, row in df.iterrows():
         mood = row['mood']
         track_id = row['id']
         if mood in playlists:
-            playlist_id = playlists[mood]
+            if mood not in tracks_to_add:
+                tracks_to_add[mood] = []
+            tracks_to_add[mood].append(track_id)
+
+    for mood, track_ids in tracks_to_add.items():
+        playlist_id = playlists[mood]
+        for i in range(0, len(track_ids), 100):
+            batch = track_ids[i:i + 100]
             try:
-                sp.playlist_add_items(playlist_id, [track_id])
+                sp.playlist_add_items(playlist_id, batch)
             except Exception:
-                continue
-        time.sleep(3)  # чтобы не превысить лимит
+                time.sleep(60)
+            time.sleep(3)  # пауза для соблюдения лимита запросов
 
 
 # Извлечение аудио характеристик треков из избранных плейлистов в Spotify
-# tracks_info = fetch_playlist_tracks_audio_features()
+tracks_info = fetch_playlist_tracks_audio_features()
 
 # Сохранение информации в файл
-# save_tracks_to_file(tracks_info)
+save_tracks_to_file(tracks_info)
 
 # Обработка сохраненных треков, распределение по классам с помощью модели
-# classify_music_from_spotify()
+classify_music_from_spotify()
 
 # Добавление треков в 3 плейлиста пользователя в Spotify в соответствии с распределением
-# csv_file_path = 'classified_spotify_playlist.csv'
-# add_tracks_to_playlists_from_csv(csv_file_path)
+add_tracks_to_playlists_from_csv()
