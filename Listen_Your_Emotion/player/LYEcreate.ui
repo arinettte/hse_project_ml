@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>createe</class>
+ <widget class="QMainWindow" name="createe">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>600</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>LYE</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                        stop:0 #FFFFFF, stop:1 #AAAAAA);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>60</y>
+      <width>191</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: 'Tahoma';  font-size: 17px; font-stretch: normal;
+background-color: rgba(255, 255, 255, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>      Your name</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="name">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>110</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #DCDCDC, stop:1 #AAAAAA);
+border: 2px solid white; 
+    border-radius: 10px;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>140</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: 'Tahoma'; cursive; font-size: 17px; font-stretch: normal;
+background-color: rgba(255, 255, 255, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>    Password</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwordd">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>180</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #DCDCDC, stop:1 #AAAAAA);
+border: 2px solid white; 
+    border-radius: 10px;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwordd_2">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>250</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #DCDCDC, stop:1 #AAAAAA);
+border: 2px solid white; 
+    border-radius: 10px;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>200</y>
+      <width>211</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: 'Tahoma'; cursive; font-size: 17px; font-stretch: normal;
+background-color: rgba(255, 255, 255, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>    Confirm your password</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="signup">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>320</y>
+      <width>231</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: 'Tahoma';
+font-size: 15px; font-stretch: normal;
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Sign up</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_message">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>300</y>
+      <width>541</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;; 
+color:red;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="prev">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FFFFFF, stop:1 #AAAAAA);
+border: none;
+font-weight: bold;
+text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+color: #222222;
+border-radius: 25px;</string>
+    </property>
+    <property name="text">
+     <string>&lt;&lt;</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>36</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="dsfs"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
