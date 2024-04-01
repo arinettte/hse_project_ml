@@ -7,9 +7,7 @@ from dotenv import load_dotenv
 from yandex_music import Client
 
 
-def update_queue(emoji):  # вызываем из плеера, когда включается следующий трек или когда пользователь переключает трек
-    # из плеера всегда запускаем четвёртый трек из очереди в порядке скачивания
-    # emoji = 'Sad' or 'Happy' or 'Energetic' or 'Calm'
+def update_queue(emoji):
     load_dotenv()
     token = os.getenv('TOKEN')
     client = Client(token).init()
@@ -43,13 +41,16 @@ def get_users_playlists():  # вызываем при запуске прило�
     token = os.getenv('TOKEN')
     client = Client(token).init()
 
-    playlists = client.users_playlists_list('1958873802')  # это общедоступная информация
+    playlists = client.users_playlists_list()
     for playlist in playlists:
+        if playlist.title != 'Happy' and playlist.title != 'Sad' and playlist.title != 'Calm':
+            continue
         csv_filename = f"{playlist.title}.csv"
         print(f"{playlist.title}.csv")
         with open(csv_filename, mode='w', newline='', encoding='utf-8-sig') as file:
             writer = csv.writer(file)
             writer.writerow(['id', 'title', 'artists'])
+            counter = 0
             for track_short in playlist.fetch_tracks():
                 track = client.tracks(track_short.id)[0]
                 if not track.id or not track.title or not track.artists:
@@ -58,9 +59,11 @@ def get_users_playlists():  # вызываем при запуске прило�
                 artists = ', '.join(
                     artist.name.replace(':', '').replace("'", '').replace('"', '') for artist in track.artists)
                 writer.writerow([track.id, track_title, artists])
+                if counter == 70:  # оптимизируем время работы
+                    break
+                counter += 1
 
     # инициализируем очередь при запуске приложения
     for i in range(7): update_queue('Calm')
     for i in range(7): update_queue('Happy')
     for i in range(7): update_queue('Sad')
-    for i in range(7): update_queue('Energetic')
