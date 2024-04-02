@@ -35,5 +35,7 @@ CALM_PLAYLIST_ID=' '
 
 КАК ЗАПУСТИТЬ ПРИЛОЖЕНИЕ
 
-TODO
+Установить все необходимые пакеты командой pip install requirements.txt
+
+Запустить файл demo_project.py
 
