@@ -1,7 +1,8 @@
 import sys, os
 import sqlite3
 import hashlib
-
+import time
+import os
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QUrl, QSize, QRect
 from PyQt5.QtWidgets import (QWidget, QPushButton, QApplication, QSlider, QStyle,
@@ -213,23 +214,25 @@ def model_init():
     global model
     global classes
     global device
-
     BATCH_SIZE = 200
     classes = ['Angry', 'Disgust', 'Fear', 'Happy', 'Calm', 'Sad', 'Surprise']
     result_tfms = tt.Compose([tt.Grayscale(num_output_channels=1), tt.ToTensor()])
     device = get_default_device()
-    model = ResNet(1, len(classes))
-    model.load_state_dict(torch.load('./models/emotion_detection_acc0.5452366471290588.pth'))
+    device = 'cpu'
+    #model = ResNet(1, len(classes))
+    #model.load_state_dict(torch.load('./models/emotion_detection_acc0.5452366471290588.pth'))
+    model = torch.load('./models/quant_model_scripted.pt', map_location='cpu')
     model = to_device(model, device)
 
 
-def emotion_to_number(emotion):
+
+def emotion_convert(emotion):
     if emotion.lower() in ['angry', 'disgust', 'fear', 'sad']:
-        return 1
-    elif emotion.lower() == 'neutral':
-        return 2
+        return 'sad'
+    elif emotion.lower() == 'calm':
+        return 'calm'
     else:
-        return 3
+        return 'happy'
 
 
 def choose_playlist(number_):  # for connection with other members
@@ -376,14 +379,40 @@ class MainWindow(QWidget):
         global classes
         global device
         global model
+
         make_photo()
 
+        def local_pred_step(batch):
+
+            images = batch
+            out = model(images)
+
+            return out
+
+        def local_predict( pred_loader):
+            outputs = [local_pred_step(batch) for batch in pred_loader]
+            return [torch.max(el, dim=1)[1] for el in outputs]
         data = [result_tfms(PIL.Image.open('./photos/' + os.listdir('./photos/')[-1]).resize((48, 48)))]
-
-        data_dl = DataLoader(data, 200, num_workers=3, pin_memory=True)
+        data_dl = DataLoader(data, 200,  pin_memory=True)
         data_dl = DeviceDataLoader(data_dl, device)
+        start_time = time.time()
 
-        return classes[predict(model, data_dl)[0][0]]
+        pred = local_predict(data_dl)[0][0]
+        #pred = predict(model, data_dl)[0][0]
+        print("--- %s seconds to predict ---\n" % (time.time() - start_time))
+        print(pred)
+
+
+        # save the model and check the model size
+        def print_size_of_model(model, label=""):
+            torch.save(model.state_dict(), "temp.p")
+            size = os.path.getsize("temp.p")
+            print("model: ", label, ' \t', 'Size (KB):', size / 1e3)
+            os.remove('temp.p')
+            return size
+        print_size_of_model(model)
+
+        return classes[pred]
 
     def get_fourth_track_path(self, directory):
         temp_directory = f"./music_storage/music_queues/{directory}"
@@ -398,7 +427,7 @@ class MainWindow(QWidget):
     def nextTrack(self):
         global CURRENT_EMOTION
 
-        CURRENT_EMOTION = self.final_predict().capitalize()  # Перенести в конец, брать из текущей эмоции для ускорения
+        CURRENT_EMOTION = emotion_convert(self.final_predict()).capitalize()  # Перенести в конец, брать из текущей эмоции для ускорения
 
         update_queue(CURRENT_EMOTION)
 
