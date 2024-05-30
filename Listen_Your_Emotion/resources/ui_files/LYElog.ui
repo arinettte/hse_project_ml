@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LYE</class>
+ <widget class="QDialog" name="LYE">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LYE</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+     QDialog {
+       background-image: url('./resources/image_files/LYE_log.jpg');
+       background-repeat: no-repeat;
+     }
+   </string>
+  </property>
+  <widget class="QWidget" name="login_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>791</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>800</width>
+     <height>600</height>
+    </size>
+   </property>
+   <widget class="QPushButton" name="loginn">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>410</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QPushButton#loginn {
+    font-size: 25px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QPushButton#loginn:hover {
+   border: 2px solid #AAAAAA
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Log in </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwordd">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>350</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLineEdit#passwordd {
+    font-size: 30px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QLineEdit#passwordd:hover {
+    border: 2px solid #AAAAAA;
+}
+</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>230</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 25px; font-stretch: normal;
+</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="name">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>250</y>
+      <width>241</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLineEdit#name {
+    font-size: 30px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QLineEdit#name:hover {
+    border: 2px solid #AAAAAA;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_message">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>390</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);     
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_message1">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>360</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;; 
+color:red;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>200</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 25px; font-stretch: normal;
+background-color: rgba(255, 255, 255, 0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>     Your name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>300</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: &quot;century gothic&quot;;  font-size: 25px; font-stretch: normal;
+background-color: rgba(255, 255, 255, 0);
+</string>
+    </property>
+    <property name="text">
+     <string>     Password</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="prev">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>540</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QPushButton#prev {
+    font-size: 25px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+    background-color: white;
+}
+
+QPushButton#prev:hover {
+   border: 2px solid black
+}
+</string>
+    </property>
+    <property name="text">
+     <string>&lt;</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_message2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>390</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;; 
+color:green;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>3000</x>
+     <y>170</y>
+     <width>800</width>
+     <height>36</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

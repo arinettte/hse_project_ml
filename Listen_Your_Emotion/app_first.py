@@ -219,11 +219,10 @@ def model_init():
     result_tfms = tt.Compose([tt.Grayscale(num_output_channels=1), tt.ToTensor()])
     device = get_default_device()
     device = 'cpu'
-    #model = ResNet(1, len(classes))
-    #model.load_state_dict(torch.load('./models/emotion_detection_acc0.5452366471290588.pth'))
+    # model = ResNet(1, len(classes))
+    # model.load_state_dict(torch.load('./models/emotion_detection_acc0.5452366471290588.pth'))
     model = torch.load('./models/quant_model_scripted.pt', map_location='cpu')
     model = to_device(model, device)
-
 
 
 def emotion_convert(emotion):
@@ -383,25 +382,24 @@ class MainWindow(QWidget):
         make_photo()
 
         def local_pred_step(batch):
-
             images = batch
             out = model(images)
 
             return out
 
-        def local_predict( pred_loader):
+        def local_predict(pred_loader):
             outputs = [local_pred_step(batch) for batch in pred_loader]
             return [torch.max(el, dim=1)[1] for el in outputs]
+
         data = [result_tfms(PIL.Image.open('./photos/' + os.listdir('./photos/')[-1]).resize((48, 48)))]
-        data_dl = DataLoader(data, 200,  pin_memory=True)
+        data_dl = DataLoader(data, 200, pin_memory=True)
         data_dl = DeviceDataLoader(data_dl, device)
         start_time = time.time()
 
         pred = local_predict(data_dl)[0][0]
-        #pred = predict(model, data_dl)[0][0]
+        # pred = predict(model, data_dl)[0][0]
         print("--- %s seconds to predict ---\n" % (time.time() - start_time))
         print(pred)
-
 
         # save the model and check the model size
         def print_size_of_model(model, label=""):
@@ -410,7 +408,6 @@ class MainWindow(QWidget):
             print("model: ", label, ' \t', 'Size (KB):', size / 1e3)
             os.remove('temp.p')
             return size
-        print_size_of_model(model)
 
         return classes[pred]
 
@@ -427,10 +424,9 @@ class MainWindow(QWidget):
     def nextTrack(self):
         global CURRENT_EMOTION
 
-        CURRENT_EMOTION = emotion_convert(self.final_predict()).capitalize()  # Перенести в конец, брать из текущей эмоции для ускорения
-
+        CURRENT_EMOTION = emotion_convert(
+            self.final_predict()).capitalize()  # Перенести в конец, брать из текущей эмоции для ускорения
         update_queue(CURRENT_EMOTION)
-
         self.open_file()
 
     # central location

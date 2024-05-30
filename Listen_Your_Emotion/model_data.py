@@ -31,6 +31,7 @@ class DeviceDataLoader():
         self.dl = dl
         self.device = device
 
+
     def __iter__(self):
         for b in self.dl:
             yield to_device(b, self.device)

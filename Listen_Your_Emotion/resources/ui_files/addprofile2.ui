@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LYE</class>
+ <widget class="QDialog" name="LYE">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LYE</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+     QDialog {
+       background-image: url('./resources/image_files/LYE_log.jpg');
+       background-repeat: no-repeat;
+     }
+   </string>
+  </property>
+  <widget class="QWidget" name="login_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>791</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>800</width>
+     <height>600</height>
+    </size>
+   </property>
+   <widget class="QPushButton" name="edit_profile">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>530</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QPushButton#edit_profile {
+    font-size: 20px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QPushButton#edit_profile:hover {
+   border: 2px solid #AAAAAA
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Edit profile</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>230</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 25px; font-stretch: normal;
+</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="firstname">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>120</y>
+      <width>241</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLineEdit#firstname {
+    font-size: 20px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QLineEdit#firstname:hover {
+    border: 2px solid #AAAAAA;
+}
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_message">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>390</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);     
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>120</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 20px; font-stretch: normal;
+color: white; 
+background-color: rgb(255, 255, 0,0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>First name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>180</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: &quot;century gothic&quot;;  font-size: 20px; font-stretch: normal;
+background-color: rgba(255, 255, 255, 0);
+color: white;
+</string>
+    </property>
+    <property name="text">
+     <string>Last name</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="prevv">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>540</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QPushButton#prev {
+    font-size: 25px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+    background-color: white;
+}
+
+QPushButton#prev:hover {
+   border: 2px solid black
+}
+</string>
+    </property>
+    <property name="text">
+     <string>&lt;</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_message2">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>370</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;; 
+color:gree</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="birthday">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>220</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgba(0,0,0,0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>230</y>
+      <width>111</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 20px; font-stretch: normal;
+color: white; 
+background-color: rgb(255, 255, 0,0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Birthday</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>260</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 20px; font-stretch: normal;
+color: white; 
+background-color: rgb(255, 255, 0,0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Gender</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>310</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 20px; font-stretch: normal;
+color: white; 
+background-color: rgb(255, 255, 0,0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Favoruite Artist</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>360</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 20px; font-stretch: normal;
+color: white; 
+background-color: rgb(255, 255, 0,0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Favoruite Song</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>260</y>
+      <width>85</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(0, 0, 127);
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+
+border-radius: 15px;</string>
+    </property>
+    <property name="editable">
+     <bool>false</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Not set</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Woman</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Man</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Non-binary</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Other</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>430</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 20px; font-stretch: normal;
+color: white; 
+background-color: rgb(255, 255, 0,0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Favoruite Genre</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="favSong">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>365</y>
+      <width>201</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLineEdit#favSong {
+    font-size: 16px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QLineEdit#favSong:hover {
+    border: 2px solid #AAAAAA;
+}
+</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="favArtist">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>310</y>
+      <width>221</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLineEdit#favArtist {
+    font-size: 16px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QLineEdit#favArtist:hover {
+    border: 2px solid #AAAAAA;
+}
+</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="favGenre">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>420</y>
+      <width>125</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLineEdit#favGenre {
+    font-size: 16px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QLineEdit#favGenre:hover {
+    border: 2px solid #AAAAAA;
+}
+</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>-50</x>
+      <y>10</y>
+      <width>367</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-family: 'Snell Roundhand', cursive; font-size: 42px; font-stretch: normal;
+font-weight: bold;
+border-radius: 15px;
+color: white; 
+background-color: rgb(255, 255, 0,0);</string>
+    </property>
+    <property name="text">
+     <string>           YOUR lye</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="user_namename">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>30</y>
+      <width>366</width>
+      <height>68</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"> font-size: 35px; font-stretch: normal;
+color: black; 
+background-color: rgb(255, 255, 0,0);
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lastname">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>170</y>
+      <width>241</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QLineEdit#lastname {
+    font-size: 20px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QLineEdit#lastname:hover {
+    border: 2px solid #AAAAAA;
+}
+</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>3000</x>
+     <y>170</y>
+     <width>800</width>
+     <height>36</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

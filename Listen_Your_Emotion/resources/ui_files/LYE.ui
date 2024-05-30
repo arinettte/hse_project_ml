@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LYE</class>
+ <widget class="QDialog" name="LYE">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LYE</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+     QDialog {
+       background-image: url('./resources/image_files/LYEfinal.jpg');
+       background-repeat: no-repeat;
+       
+     }
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>600</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>10009</width>
+     <height>10000</height>
+    </size>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; 
+    background-size: cover; stop:0 #FFFFFF, stop:1 #AAAAAA);</string>
+   </property>
+   <widget class="QPushButton" name="login">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>270</y>
+      <width>261</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#login {
+    font-size: 25px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QPushButton#login:hover {
+    border: 2px solid black;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Log in </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="create">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>360</y>
+      <width>261</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#create {
+    font-size: 25px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QPushButton#create:hover {
+    border: 2px solid black;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Сreate a new account</string>
+    </property>
+    <property name="autoRepeatDelay">
+     <number>300</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>100</y>
+      <width>331</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 40px; font-stretch: bold;
+border-radius: 10px;
+border: 0px;font-weight: bold;
+font-family: &quot;century gothic&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Welcome to LYE</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>150</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">@keyframes blink {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+QLabel {
+    font-size: 20px;
+    font-stretch: cursive;
+    border-radius: 10px;
+    border: 0px;
+    font-style: italic;
+    font-family: &quot;century gothic&quot;;
+    animation: blink 1s infinite;
+}</string>
+    </property>
+    <property name="text">
+     <string>Let's get started!</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="about_us">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>550</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#about_us {
+    font-size: 25px;
+    font-stretch: normal;
+    border-radius: 10px;
+    border: 0px;
+}
+
+QPushButton#about_us:hover {
+    border: 2px solid black;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>?</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>55</y>
+     <width>800</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>еее</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+ </widget>
+ <resources>
+  <include location="bi.qrc"/>
+ </resources>
+ <connections/>
+</ui>

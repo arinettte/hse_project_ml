@@ -1,0 +1,4 @@
+pydantic
+PyQt5
+aiogram
+hashlib

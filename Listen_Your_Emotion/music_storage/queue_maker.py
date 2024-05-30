@@ -3,7 +3,7 @@ import glob
 import random
 import csv
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 from yandex_music import Client
 import numpy as np
 import pandas as pd
@@ -16,63 +16,49 @@ import catboost
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
-
 # Глобальная переменная cluster
 cluster = 1
 
 
-def get_first_latest_mp3(directory):
-    files_with_times = []
-
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if len(files_with_times) < 2:
-            update_queue(emoji)
-        if filename.lower().endswith('.mp3'):
-            file_mtime = os.path.getmtime(filepath)
-            files_with_times.append((file_mtime, filepath))
-
-    files_with_times.sort(reverse=True, key=lambda x: x[0])
-    return files_with_times[1][0]
 
 
-def get_second_latest_mp3(directory):
-    files_with_times = []
 
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if len(files_with_times) < 2:
-            update_queue(emoji)
-        if filename.lower().endswith('.mp3'):
-            file_mtime = os.path.getmtime(filepath)
-            files_with_times.append((file_mtime, filepath))
+def get_second_latest_mp3(emoji):
+    temp_directory = f"./music_storage/music_queues/{emoji}"
 
-    files_with_times.sort(reverse=True, key=lambda x: x[0])
-    return files_with_times[1][1]
+    files = [os.path.join(temp_directory, f) for f in os.listdir(temp_directory)]
+    files = [f for f in files if os.path.isfile(f)]
+    files.sort(key=lambda x: os.path.getmtime(x),reverse=True)
+    # всегда возвращаем путь к четвертому файлу; можно создать очередь как массив названий и обновлять тут
 
+    return files[1]
 
 def update_queue(emoji):  # вызываем из плеера, когда включается следующий трек или когда пользователь переключает трек
     global cluster
 
     load_dotenv()
-    token = 'y0_AgAAAAAmognLAAG8XgAAAAEF2xBTAAA074mD2aNHtZtwecKEIKy2VbZ-Cg'
+    token = 'y0_AgAAAAB0wgrKAAG8XgAAAAD97myUAACxssYMeJxLFa9EoF4vawM5Kyb2Uw'
     client = Client(token).init()
 
     # Создаем папки, если они не существуют
-    folder_path = "D:\\downloads"
-    folder_path2 = Path("D:\\downloads\\music_queues\\" + emoji)
-    folder_path2.mkdir(parents=True, exist_ok=True)
+    folder_path2 = f"./music_storage/music_queues/{emoji}"
+
 
     # Считываем CSV файл
-    csv_filename = folder_path + "\\" + "tracks_info.csv"
-    with open(csv_filename, mode='r', encoding='utf-8-sig') as file:
+    csv_path = 'tracks_info.csv'
+
+    with open(csv_path, mode='r', encoding='utf-8-sig') as file:
         reader = csv.DictReader(file)
         rows = list(reader)
+    if emoji == "Calm":
+        emoji = "Relaxed"
 
     # Фильтруем строки по emoji и cluster
-    filtered_rows = [row for row in rows if row['mood'] == emoji]
-    filtered_rows2 = [row for row in rows if row['mood'] == emoji]
+    filtered_rows = [row for row in rows if row['mood'].capitalize() == emoji]
+    filtered_rows2 = [row for row in rows if row['mood'].capitalize()  == emoji]
+
     if cluster and random.random() < 0.7:  # 70% случаев учитываем cluster
+
         filtered_rows2 = [row for row in filtered_rows if row['cluster'] == cluster]
 
     # Выбираем случайную строку из отфильтрованных строк
@@ -100,13 +86,14 @@ def update_queue(emoji):  # вызываем из плеера, когда вк�
 
 
 def download_favorite_tracks():
-
     # Загружаем переменные из .env файла
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    env_file_path = os.path.join(current_dir, '..', '..', '.env')
+    env_file_path = os.path.join(current_dir, '..', '.env')
     load_dotenv(env_file_path)
+
     token = os.getenv('TOKEN')
     all_music_path = os.getenv('DIRECTORY')
+    print(token)
     client = Client(token).init()
 
     # Получение любимых треков пользователя
@@ -117,7 +104,8 @@ def download_favorite_tracks():
         os.makedirs(folder_with_mp3_path)
 
     music_storage_for_csv = current_dir
-    csv_path = os.path.join(music_storage_for_csv, 'tracks_info.csv')
+
+    csv_path = os.path.join(music_storage_for_csv, '..', 'tracks_info.csv')
 
     with open(csv_path, mode='w', newline='', encoding='utf-8-sig') as csv_file:
         fieldnames = ['Number', 'Title', 'Artist', 'Genre', 'YandexMusicID']
@@ -248,7 +236,6 @@ def predict_mood_for_file(file_path, model, label_encoder, segment_duration=25):
 
 
 def classify_emotions():
-
     # Путь к модели
     current_dir = os.path.dirname(os.path.abspath(__file__))
     model_path = os.path.join(current_dir, '..', 'models', 'music_classifier.pkl')
@@ -258,11 +245,11 @@ def classify_emotions():
 
     # Путь к директории с mp3 файлами и CSV файлу
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    env_file_path = os.path.join(current_dir, '..', '..', '.env')
+    env_file_path = os.path.join(current_dir, '..', '.env')
     load_dotenv(env_file_path)
     all_music_path = os.getenv('DIRECTORY')
     folder_with_mp3_path = os.path.join(all_music_path, 'all_mp3')
-    csv_file_path = "tracks_info.csv"
+    csv_file_path = os.path.join(current_dir, '..', "tracks_info.csv")
 
     # Проход по всем mp3 файлам и предсказывание mood
     df = pd.read_csv(csv_file_path)
@@ -298,16 +285,15 @@ def extract_few_features(y, sr):
 
 
 def create_clusters():
-
     os.environ["LOKY_MAX_CPU_COUNT"] = str(2)
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    env_file_path = os.path.join(current_dir, '..', '..', '.env')
+    env_file_path = os.path.join(current_dir, '..', '.env')
     load_dotenv(env_file_path)
     all_music_path = os.getenv('DIRECTORY')
     folder_with_mp3_path = os.path.join(all_music_path, 'all_mp3')
 
-    csv_file_path = "tracks_info.csv"
+    csv_file_path = os.path.join(current_dir, '..', "tracks_info.csv")
     df = pd.read_csv(csv_file_path)
 
     file_column = 'Number'
@@ -339,7 +325,7 @@ def create_clusters():
 
 def delete_mp3():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    env_file_path = os.path.join(current_dir, '..', '..', '.env')
+    env_file_path = os.path.join(current_dir, '..',  '.env')
     load_dotenv(env_file_path)
     all_music_path = os.getenv('DIRECTORY')
     folder_with_mp3_path = os.path.join(all_music_path, 'all_mp3')
