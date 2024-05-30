@@ -21,6 +21,36 @@ from sklearn.preprocessing import StandardScaler
 cluster = 1
 
 
+def get_first_latest_mp3(directory):
+    files_with_times = []
+
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if len(files_with_times) < 2:
+            update_queue(emoji)
+        if filename.lower().endswith('.mp3'):
+            file_mtime = os.path.getmtime(filepath)
+            files_with_times.append((file_mtime, filepath))
+
+    files_with_times.sort(reverse=True, key=lambda x: x[0])
+    return files_with_times[1][0]
+
+
+def get_second_latest_mp3(directory):
+    files_with_times = []
+
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if len(files_with_times) < 2:
+            update_queue(emoji)
+        if filename.lower().endswith('.mp3'):
+            file_mtime = os.path.getmtime(filepath)
+            files_with_times.append((file_mtime, filepath))
+
+    files_with_times.sort(reverse=True, key=lambda x: x[0])
+    return files_with_times[1][1]
+
+
 def update_queue(emoji):  # вызываем из плеера, когда включается следующий трек или когда пользователь переключает трек
     global cluster
 
