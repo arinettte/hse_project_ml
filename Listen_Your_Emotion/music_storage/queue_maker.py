@@ -39,7 +39,8 @@ def update_queue(emoji):  # вызываем из плеера, когда вк�
     load_dotenv()
     token = 'y0_AgAAAAB0wgrKAAG8XgAAAAD97myUAACxssYMeJxLFa9EoF4vawM5Kyb2Uw'
     client = Client(token).init()
-
+    if emoji == "Relaxed":
+        emoji = 'Calm'
     # Создаем папки, если они не существуют
     folder_path2 = f"./music_storage/music_queues/{emoji}"
 
@@ -57,12 +58,13 @@ def update_queue(emoji):  # вызываем из плеера, когда вк�
     filtered_rows = [row for row in rows if row['mood'].capitalize() == emoji]
     filtered_rows2 = [row for row in rows if row['mood'].capitalize()  == emoji]
 
-    if cluster and random.random() < 0.7:  # 70% случаев учитываем cluster
+    #print('num of track: ',len(filtered_rows))
 
+    if cluster and random.random() < 0.7:  # 70% случаев учитываем cluster
         filtered_rows2 = [row for row in filtered_rows if row['cluster'] == cluster]
 
     # Выбираем случайную строку из отфильтрованных строк
-    if not filtered_rows2:
+    if len(filtered_rows2) < 2:
         filtered_rows2 = filtered_rows
 
     random_row = random.choice(filtered_rows2)

@@ -12,7 +12,6 @@ def make_photo():  # должна работать постоянно
 
     cap = cv2.VideoCapture(0)
     try:
-
         ret, frame = cap.read()
         if not ret:
             print("Не удалось получить изображение с камеры.")
@@ -22,7 +21,10 @@ def make_photo():  # должна работать постоянно
 
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
-        if len(faces) > 0:
+        if (len(faces) == 0):
+            print('face wasnt recognized')
+            make_photo()
+        elif len(faces) > 0:
             x, y, w, h = faces[0]
             face = frame[y:y + h, x:x + w]
             timestamp = time.strftime("%Y%m%d-%H%M%S")

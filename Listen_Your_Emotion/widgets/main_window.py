@@ -532,7 +532,7 @@ class MainWindow(QWidget):
         def local_predict(pred_loader):
             outputs = [local_pred_step(batch) for batch in pred_loader]
             return [torch.max(el, dim=1)[1] for el in outputs]
-
+        
         data = [result_tfms(PIL.Image.open('./photos/' + os.listdir('./photos/')[-1]).resize((48, 48)))]
         data_dl = DataLoader(data, 200, pin_memory=True)
         data_dl = DeviceDataLoader(data_dl, device)
