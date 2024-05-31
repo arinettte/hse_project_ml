@@ -1,6 +1,9 @@
 # Listen Your Emotion
 
-![{width=50% height=50%}](https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/LYEE.jpg)
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/LYEE.jpg" alt="Diagram 2.1" style="width: 81%; margin: 5px;">
+</div>
+
 - Receive your image from the computer camera, determine the mood and produce a suitable track.
 - A unique interface and the ability to listen to music by genre, mood and activity at the current moment in time
 
