@@ -6,7 +6,7 @@
 
 ## Demo Image
 
-![Screenshot1](https://github.com/AKBAPEL/hse_project_ml/Listen_your_emotion/resources/image_files/for_read.jpg) 
+![Screenshot1](https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/for_read.jpg) 
 
 ## Content
 
@@ -40,7 +40,7 @@ To do this, you need to follow the link and download the project and run main.ex
 
 **Welcome! Dark theme**
 
-![](Listen_your_emotion/resources/image_files/for_read_dark.jpg) 
+![](https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/for_read_dark.jpg) 
 
 ## Support chat
 
@@ -68,9 +68,9 @@ As part of our project, we conducted a comprehensive survey among users to gathe
 [General survey after installing the application](https://forms.gle/Z7M8XFjqk3ALbRS76)
 
 <div style="display: flex; flex-wrap: wrap;">
-    <img src="Listen_your_emotion/resources/image_files/diagram2.1.jpg" alt="Diagram 2.1" style="width: 51%; margin: 5px;">
-    <img src="Listen_your_emotion/resources/image_files/giagram2.2.jpg" alt="Photo 1" style="width: 51%; margin: 5px;">
-    <img src="Listen_your_emotion/resources/image_files/diagram2.3.jpg" alt="Photo 2" style="width: 50%; margin: 5px;">
+    <img src="https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/diagram2.1.jpg" alt="Diagram 2.1" style="width: 51%; margin: 5px;">
+    <img src="https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/giagram2.2.jpg" alt="Photo 1" style="width: 51%; margin: 5px;">
+    <img src="https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/diagram2.3.jpg" alt="Photo 2" style="width: 50%; margin: 5px;">
 </div>
 
 1. Changing user opinion with the introduction of heuristics)
