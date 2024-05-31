@@ -29,11 +29,12 @@ This will also be necessary when using tg-bot (more details [below](#Support-cha
 
  - **Playlists** Added playlists sorted by genre and by user action at the current time
 
+- **Emotional recognition** Onboard implementation of a quantized Neural Network to predict the current emotion of the user to reccomend him the relevant track. 
 
 ## Download
 
 We have made our application available for download!
-To do this, you need to follow the link and download the .exe
+To do this, you need to follow the link and download the project and run main.exe
 
 [Link](https://drive.google.com/file/d/1PwEhHlbpH2-E3iqb75g9oV1D1xsFXYyT/view?usp=drive_link)
 
