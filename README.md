@@ -1,6 +1,6 @@
 # Listen Your Emotion
 
-![{width=50% height=50%}](resources/image_files/LYEE.jpg)
+![{width=50% height=50%}](Listen_your_emotion/resources/image_files/LYEE.jpg)
 
 **Music application with which you can Listen Your Emotions**
 
@@ -9,7 +9,7 @@
 
 ## Demo Image
 
-![Screenshot1](resources/image_files/for_read.jpg) 
+![Screenshot1](Listen_your_emotion/resources/image_files/for_read.jpg) 
 
 ## Content
 
@@ -42,7 +42,7 @@ To do this, you need to follow the link and download the .exe
 
 **Welcome! Dark theme**
 
-![](resources/image_files/for_read_dark.jpg) 
+![](Listen_your_emotion/resources/image_files/for_read_dark.jpg) 
 
 ## Support chat
 
@@ -63,16 +63,16 @@ There are also some bonuses, one of which is on your birthday! 🎂
 As part of our project, we conducted a comprehensive survey among users to gather valuable feedback and insights. Here are the links to the survey and their corresponding statistics as of 05/31/2024:
 
 [Survey about the interface](https://forms.gle/Jn33xH1AZ8u8M5bU7)
-![](resources/image_files/maindiag1.JPG)
+![](Listen_your_emotion/resources/image_files/maindiag1.JPG)
 
 (From left to right are people's results about three possible interfaces. The study was conducted with a rating from 1 to 3, 1 variant won, which became the final one (it received the highest rating from 86 people).)
 
 [General survey after installing the application](https://forms.gle/Z7M8XFjqk3ALbRS76)
 
 <div style="display: flex; flex-wrap: wrap;">
-    <img src="resources/image_files/diagram2.1.jpg" alt="Diagram 2.1" style="width: 51%; margin: 5px;">
-    <img src="resources/image_files/giagram2.2.jpg" alt="Photo 1" style="width: 51%; margin: 5px;">
-    <img src="resources/image_files/diagram2.3.jpg" alt="Photo 2" style="width: 50%; margin: 5px;">
+    <img src="Listen_your_emotion/resources/image_files/diagram2.1.jpg" alt="Diagram 2.1" style="width: 51%; margin: 5px;">
+    <img src="Listen_your_emotion/resources/image_files/giagram2.2.jpg" alt="Photo 1" style="width: 51%; margin: 5px;">
+    <img src="Listen_your_emotion/resources/image_files/diagram2.3.jpg" alt="Photo 2" style="width: 50%; margin: 5px;">
 </div>
 
 1. Changing user opinion with the introduction of heuristics)
