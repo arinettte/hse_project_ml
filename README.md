@@ -6,6 +6,7 @@
 
 - Receive your image from the computer camera, determine the mood and produce a suitable track.
 - A unique interface and the ability to listen to music by genre, mood and activity at the current moment in time
+- The recommendation system is based on the user's favorite music in Yandex music, current mood and heuristics.
 
 ## Demo Image
 
@@ -23,20 +24,33 @@
 ## Features:
 
 - **User authorization** 
-The user can not only log into his account, but also fill out his profile. 
+The user can not only log into their account, but also fill out his profile. 
 This will also be necessary when using tg-bot (more details [below](#Support-chat))
 
- - **Playlists** Added playlists sorted by genre and by user action at the current time
+- **Playlists** Added playlists sorted by genre and by user action at the current time
+
+- **Personal music** Added the ability to listen to user's favourite music from Yandex Music. This database can be updated at any time with the music classification algorithm that uses Machine Learning. Machine Learning algorithms are also used for heuristics so that each subsequent track is in harmony with the next one.
+
+- **Efficient music storage** We don't storage all .mp3 locally. There are 3 queues (Happy, Sad, Calm). At any given time, each one stores 7 tracks. The queues are updated (that is, the old track is deleted and the new one is downloaded) with the most suitable tracks. Each track has an ID on Yandex music. We store these IDs locally in text format, next to the predicted mood.
 
 - **Emotional recognition** Onboard implementation of a quantized Neural Network to predict the current emotion of the user to reccomend him the relevant track. 
 
 ## Download
 
 We have made our application available for download!
-To do this, you need to follow the link and download the project and run main.exe
+To do this, you need to follow the link and download the project.
 
 [Link](https://drive.google.com/file/d/1PwEhHlbpH2-E3iqb75g9oV1D1xsFXYyT/view?usp=drive_link)
 
+## Before start
+
+You need to get a Yandex Music token. Here is more information how to get it: [Link](https://yandex-music.readthedocs.io/en/main/token.html#)
+
+Run Listen_Your_Emotion\music_storage\before_starting.py. Insert your token and wait for the algorithm to finish classifying the music.
+
+## Start
+
+Run main.exe and enjoy!
 
 ## Themes
 
@@ -58,7 +72,7 @@ There are also some bonuses, one of which is on your birthday! 🎂
 <span style="color:purple">*to use tg-bot you must register in the application</span>
 
 
-## Human evoluation
+## Human evaluation
 
 As part of our project, we conducted a comprehensive survey among users to gather valuable feedback and insights. Here are the links to the survey and their corresponding statistics as of 05/31/2024:
 
