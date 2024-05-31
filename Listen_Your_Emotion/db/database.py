@@ -8,8 +8,8 @@ from settings import DB_FILE
 
 
 class Database:
-    def __init__(self) -> None:
-        self.connection = sqlite3.connect(DB_FILE)
+    def __init__(self, file=DB_FILE) -> None:
+        self.connection = sqlite3.connect(file)
         self.connection.row_factory = sqlite3.Row
         self.cursor = self.connection.cursor()
         self.create_tables()
@@ -82,9 +82,19 @@ class Database:
 
     def add_profile(self, profile: Profile):
         self.cursor.execute("""
-        INSERT INTO Profile (username, password)
-        VALUES (?, ?)
-        """, (profile.username, profile.password))
+        INSERT INTO Profile (username, password, first_name, last_name, birthday, fav_artist, fav_song, fav_genre, gender)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            profile.username,
+            profile.password,
+            profile.first_name,
+            profile.last_name,
+            profile.birthday,
+            profile.fav_artist,
+            profile.fav_song,
+            profile.fav_genre,
+            profile.gender
+        ))
         self.connection.commit()
 
     def edit_profile(self, id: int, profile: Profile):
@@ -105,10 +115,11 @@ class Database:
         self.connection.commit()
         return self.cursor.lastrowid
 
+    #for tests
     def get_all_ratings(self) -> List[Rating]:
-        self.cursor.execute("SELECT id, user_id, general, service, interface FROM Ratings")
+        self.cursor.execute("SELECT * FROM Ratings")
         rows = self.cursor.fetchall()
-        return [Rating(id=row[0], user_id=row[1], general=row[2], service=row[3], interface=row[4]) for row in rows]
+        return [Rating(**dict(row)) for row in rows]
 
     def insert_review(self, review: Review):
         self.cursor.execute("""
@@ -119,6 +130,12 @@ class Database:
         self.connection.commit()
         return self.cursor.lastrowid
 
+    #for tests
+    def get_all_reviews(self) -> List[Review]:
+        self.cursor.execute("SELECT * FROM Reviews")
+        rows = self.cursor.fetchall()
+        return [Review(**dict(row)) for row in rows]
+
     def insert_feedback(self, feedback: Feedback):
         self.cursor.execute("""
             INSERT INTO Feedbacks (user_id, text)
@@ -127,6 +144,12 @@ class Database:
 
         self.connection.commit()
         return self.cursor.lastrowid
+
+    #for tests
+    def get_all_feedback(self) -> List[Feedback]:
+        self.cursor.execute("SELECT * FROM Feedbacks")
+        rows = self.cursor.fetchall()
+        return [Feedback(**dict(row)) for row in rows]
 
     def close(self):
         self.connection.close()
