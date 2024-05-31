@@ -1,6 +1,6 @@
 # Listen Your Emotion
 
-![{width=50% height=50%}](Listen_your_emotion/resources/image_files/LYEE.jpg)
+![{width=50% height=50%}](https://github.com/AKBAPEL/hse_project_ml/Listen_your_emotion/resources/image_files/LYEE.jpg)
 
 **Music application with which you can Listen Your Emotions**
 
@@ -9,7 +9,7 @@
 
 ## Demo Image
 
-![Screenshot1](Listen_your_emotion/resources/image_files/for_read.jpg) 
+![Screenshot1](https://github.com/AKBAPEL/hse_project_ml/Listen_your_emotion/resources/image_files/for_read.jpg) 
 
 ## Content
 
