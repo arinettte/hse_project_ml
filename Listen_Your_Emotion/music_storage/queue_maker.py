@@ -80,4 +80,3 @@ def update_queue(emoji):  # вызываем из плеера, когда вк�
         oldest_file = min(mp3_files, key=os.path.getctime)
         os.remove(oldest_file)
         mp3_files.remove(oldest_file)
-1
