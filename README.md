@@ -61,7 +61,7 @@ There are also some bonuses, one of which is on your birthday! 🎂
 As part of our project, we conducted a comprehensive survey among users to gather valuable feedback and insights. Here are the links to the survey and their corresponding statistics as of 05/31/2024:
 
 [Survey about the interface](https://forms.gle/Jn33xH1AZ8u8M5bU7)
-![](https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/maindiag1.JPG)
+![](https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/maindiag1.jpg?raw=true)
 
 (From left to right are people's results about three possible interfaces. The study was conducted with a rating from 1 to 3, 1 variant won, which became the final one (it received the highest rating from 86 people).)
 
