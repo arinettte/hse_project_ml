@@ -1,9 +1,6 @@
 # Listen Your Emotion
 
-![{width=50% height=50%}]([https://github.com/AKBAPEL/hse_project_ml/Listen_your_emotion/resources/image_files/LYEE.jpg](https://github.com/AKBAPEL/hse_project_ml/blob/4511b567b71ec1e2b6c7194335f220dedf04f06e/Listen_Your_Emotion/resources/image_files/LYEE.jpg))
-
-**Music application with which you can Listen Your Emotions**
-
+![{width=50% height=50%}](https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/LYEE.jpg)
 - Receive your image from the computer camera, determine the mood and produce a suitable track.
 - A unique interface and the ability to listen to music by genre, mood and activity at the current moment in time
 
