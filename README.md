@@ -15,7 +15,6 @@
 - [Themes](#themes)
 - [Support chat](#Support-chat)
 - [Human evolution](#Human-evoluation)
-- [License](#license)
 - [FAQ](#faq)
 
 ## Features:
