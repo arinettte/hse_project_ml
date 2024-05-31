@@ -45,8 +45,8 @@ To do this, you need to follow the link and download the project and run main.ex
 
 As a full-fledged application, we decided that we needed our users to be able to connect with our team and offer something new and interesting.
 
-[TG-bot](https://t.me/lyesplyebot)
-
+[TG-bot](https://t.me/LyeLyesupportBot)
+![](https://github.com/AKBAPEL/hse_project_ml/blob/main/Listen_Your_Emotion/resources/image_files/tg_bot.jpg) 
 
 For this purpose, we have implemented a telegram bot in which <span style="color:purple">users*</span> can rate our application according to three criteria, leave a review and write to technical support to receive feedback
 
