@@ -46,7 +46,7 @@ To do this, you need to follow the link and download the project.
 
 You need to get a Yandex Music token. Here is more information how to get it: [Link](https://yandex-music.readthedocs.io/en/main/token.html#)
 
-Run Listen_Your_Emotion\music_storage\before_starting.py. Insert your token and wait for the algorithm to finish classifying the music.
+Run music_storage\before_starting.py. Insert your token and wait for the algorithm to finish classifying the music.
 
 ## Start
 
